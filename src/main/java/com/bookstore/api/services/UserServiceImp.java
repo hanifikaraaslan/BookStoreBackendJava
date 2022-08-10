@@ -111,24 +111,20 @@ public class UserServiceImp implements UserService {
 
     @Override
     public ApiResponse<UserDto> putOneUser(int id, User user) {
-
-        // Entity -> Dto
+    	
         UserDto userDto = getOneUser(id).getData();
 
-        // Dto -> Entity
         User userEntity = mapper.map(userDto, User.class);
-
-        // The area to be updated
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
 
-        // Update roles
+        
         Set<Role> roles = roleRepository.findByIdIn(user.getRoles());
         userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
 
-        // Entity -> Dto
+        
         return ApiResponse.default_ACCEPTED(mapper.map(userEntity, UserDto.class));
     }
 
