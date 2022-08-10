@@ -1,6 +1,7 @@
 package com.bookstore.api.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,10 +41,12 @@ public class UserController {
     }
     
    @PutMapping(path = "/{id}")
+   @PreAuthorize("hasAuthority('user:put')")
     public ResponseEntity<?> putOneUser(@RequestBody User user, @PathVariable(name = "id", required = true) int id){
 	   var response=userService.putOneUser(id, user);
     	return ResponseEntity
     			.status(response.getHttpStatus())
     			.body(response);
     }
+   
 }

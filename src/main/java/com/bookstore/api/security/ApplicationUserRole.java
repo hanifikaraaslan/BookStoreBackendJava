@@ -13,7 +13,7 @@ public enum ApplicationUserRole {
     ADMIN(Sets.newHashSet(
             BOOK_GET, BOOK_POST, BOOK_PUT, BOOK_DELETE,
             CATEGORY_GET, CATEGORY_POST, CATEGORY_PUT, CATEGORY_DELETE,
-            AUTHOR_GET, AUTHOR_POST, AUTHOR_PUT, AUTHOR_DELETE)),
+            AUTHOR_GET, AUTHOR_POST, AUTHOR_PUT, AUTHOR_DELETE, USER_PUT)),
 
     EDITOR(Sets.newHashSet(
             BOOK_GET, BOOK_POST,

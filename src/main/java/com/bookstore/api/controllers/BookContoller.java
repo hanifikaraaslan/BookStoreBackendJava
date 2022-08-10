@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.api.entities.dto.BookDtoForPost;
@@ -64,7 +65,7 @@ public class BookContoller {
     }
     @GetMapping("/search")
     @PreAuthorize("permitAll()")
-    public ResponseEntity<?> getByBookName(@RequestBody String str){
+    public ResponseEntity<?> getByBookName(@RequestParam("title") String str){
     	return ResponseEntity.status(HttpStatus.OK)
     			.body(bookService.getByBookNameContains(str));
     }

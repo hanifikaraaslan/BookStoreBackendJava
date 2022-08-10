@@ -96,7 +96,7 @@ public class BookServiceImp implements BookService {
 
 	@Override
 	public List<Book> getByBookNameContains(String productName) {
-		List<Book> list= bookRepository.getByBookNameContains(productName);
+		List<Book> list= bookRepository.getByTitleContains(productName);
 		return list;
 	}
 }

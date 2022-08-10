@@ -14,7 +14,12 @@ public enum ApplicationUserPermission {
     AUTHOR_GET("author:get"),
     AUTHOR_POST("author:post"),
     AUTHOR_PUT("author:put"),
-    AUTHOR_DELETE("author:delete");
+    AUTHOR_DELETE("author:delete"),
+    
+    USER_PUT("user:put")
+    ;
+	
+	
 
     private final String permission;
 
