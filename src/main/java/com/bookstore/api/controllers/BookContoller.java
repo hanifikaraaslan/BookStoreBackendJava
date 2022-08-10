@@ -62,4 +62,11 @@ public class BookContoller {
         bookService.deleteOneBook(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/search")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<?> getByBookName(@RequestBody String str){
+    	return ResponseEntity.status(HttpStatus.OK)
+    			.body(bookService.getByBookNameContains(str));
+    }
+    
 }

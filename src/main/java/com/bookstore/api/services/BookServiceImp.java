@@ -93,4 +93,10 @@ public class BookServiceImp implements BookService {
         // bookRepository.deleteById(id);
         bookRepository.delete(getOneBook(id).getData());
     }
+
+	@Override
+	public List<Book> getByBookNameContains(String productName) {
+		List<Book> list= bookRepository.getByBookNameContains(productName);
+		return list;
+	}
 }

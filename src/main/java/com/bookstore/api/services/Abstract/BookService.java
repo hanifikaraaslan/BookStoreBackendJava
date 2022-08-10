@@ -17,6 +17,7 @@ public interface BookService {
 
     ApiResponse<Book> putOneBook(int id, BookDtoForPut book);
 
-    void deleteOneBook(int id);
+    List<Book> getByBookNameContains (String productName);
 
+    void deleteOneBook(int id);
 }
