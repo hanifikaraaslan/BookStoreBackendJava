@@ -16,7 +16,8 @@ public enum ApplicationUserPermission {
     AUTHOR_PUT("author:put"),
     AUTHOR_DELETE("author:delete"),
     
-    USER_PUT("user:put")
+    USER_PUT("user:put"),
+    USER_DELETE("user:delete")
     ;
 	
 	
