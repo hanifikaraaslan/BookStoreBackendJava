@@ -1,6 +1,7 @@
 package com.bookstore.api.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -30,16 +32,16 @@ public class User {
     int id;
 
     @Column(name = "user_name")
-    String userName;
+   private String userName;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     @Column(name = "first_name")
-    String firstName;
+   private String firstName;
 
     @Column(name = "last_name")
-    String lastName;
+   private String lastName;
 
 //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -48,4 +50,8 @@ public class User {
     @ManyToOne
     @JoinColumn(name ="role_id")
     private Role role;
+    
+    @ManyToOne
+    @JoinColumn(name="cart_id")
+    private Cart cart;
 }

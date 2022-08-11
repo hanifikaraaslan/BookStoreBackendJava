@@ -29,7 +29,7 @@ public class Role {
     @Column(name = "description")
     private String description;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "role")
+//    private List<User> users;
 }

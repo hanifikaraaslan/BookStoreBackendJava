@@ -12,4 +12,5 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private int roleId;
+    private int cartId;
 }
