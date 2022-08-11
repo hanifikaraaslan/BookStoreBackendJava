@@ -16,7 +16,7 @@ public class ApplicationUserService implements UserDetailsService {
 
     private final ApplicationUserDao applicationUserDao;
 
-    public ApplicationUserService(@Qualifier("pgSql") ApplicationUserDao applicationUserDao) {
+    public ApplicationUserService(@Qualifier("fake") ApplicationUserDao applicationUserDao) {
         this.applicationUserDao = applicationUserDao;
     }
 

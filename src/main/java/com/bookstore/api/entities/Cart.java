@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,6 +41,11 @@ public class Cart {
     @JoinTable(name = "books_carts", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
 	private Set<Book> books;
 	
+	
+	@OneToMany(mappedBy = "cart")
+	private List<User> users;
+
+
 
 	
 
