@@ -1,4 +1,4 @@
-package com.bookstore.api.services;
+package com.bookstore.api.services.concretes;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 

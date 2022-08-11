@@ -28,8 +28,8 @@ import com.bookstore.api.entities.dto.request.UserRequest;
 import com.bookstore.api.entities.dto.request.UserRequestForRegister;
 import com.bookstore.api.entities.dto.response.AuthDto;
 import com.bookstore.api.jwt.JwtTokenProvider;
-import com.bookstore.api.services.RefreshTokenServiceImp;
 import com.bookstore.api.services.Abstract.UserService;
+import com.bookstore.api.services.concretes.RefreshTokenServiceImp;
 
 @RestController
 @RequestMapping("/api/v1/auth")

@@ -46,8 +46,8 @@ public class UserController {
     
    @PutMapping(path = "/{id}")
    @PreAuthorize("hasAuthority('user:put')")
-    public ResponseEntity<?> putOneUser(@RequestBody User user, @PathVariable(name = "id", required = true) int id){
-	   var response=userService.putOneUser(id, user);
+    public ResponseEntity<?> putOneUser(@RequestBody UserDtoRequest userDtoRequest, @PathVariable(name = "id", required = true) int id){
+	   var response=userService.putOneUser(id, userDtoRequest);
     	return ResponseEntity
     			.status(response.getHttpStatus())
     			.body(response);

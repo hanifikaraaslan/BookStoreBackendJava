@@ -15,7 +15,7 @@ public interface UserService extends ApplicationUserDao {
 
     ApiResponse<UserDto> postOneUser(UserDtoRequest userDtoRequest);
 
-    ApiResponse<UserDto> putOneUser(int id, User user);
+    ApiResponse<UserDto> putOneUser(int id, UserDtoRequest userDtoRequest);
 
     User getOneUserByUserName(String username);
 

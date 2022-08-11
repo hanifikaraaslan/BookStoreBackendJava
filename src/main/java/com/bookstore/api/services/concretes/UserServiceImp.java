@@ -1,4 +1,4 @@
-package com.bookstore.api.services;
+package com.bookstore.api.services.concretes;
 
 import java.util.HashSet;
 import java.util.List;
@@ -110,7 +110,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ApiResponse<UserDto> putOneUser(int id, User user) {
+    public ApiResponse<UserDto> putOneUser(int id, UserDtoRequest userDtoRequest) {
 
         // Entity -> Dto
         UserDto userDto = getOneUser(id).getData();
@@ -119,12 +119,12 @@ public class UserServiceImp implements UserService {
         User userEntity = mapper.map(userDto, User.class);
 
         // The area to be updated
-        userEntity.setFirstName(user.getFirstName());
-        userEntity.setLastName(user.getLastName());
+        mapper.map(userEntity, UserDtoRequest.class);
+        userEntity.setPassword(passwordEncoder.encode(userDtoRequest.getPassword()));
 
         // Update roles
-    //    Set<Role> roles = roleRepository.findByIdIn(userDto.getRoles());
-     //   userEntity.setRoles(roles);
+        //    Set<Role> roles = roleRepository.findByIdIn(userDto.getRoles());
+        //   userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
 

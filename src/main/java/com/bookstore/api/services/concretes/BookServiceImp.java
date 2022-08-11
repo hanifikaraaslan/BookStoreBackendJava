@@ -1,4 +1,4 @@
-package com.bookstore.api.services;
+package com.bookstore.api.services.concretes;
 
 import java.util.List;
 import java.util.Set;

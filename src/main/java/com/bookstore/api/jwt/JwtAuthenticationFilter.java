@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.bookstore.api.services.ApplicationUserService;
+import com.bookstore.api.services.concretes.ApplicationUserService;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

@@ -18,7 +18,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import com.bookstore.api.jwt.JwtAuthenticationEntryPoint;
 import com.bookstore.api.jwt.JwtAuthenticationFilter;
-import com.bookstore.api.services.ApplicationUserService;
+import com.bookstore.api.services.concretes.ApplicationUserService;
 
 import lombok.RequiredArgsConstructor;
 import static com.bookstore.api.security.ApplicationUserRole.*;
