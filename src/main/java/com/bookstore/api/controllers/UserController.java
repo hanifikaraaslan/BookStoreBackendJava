@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.api.entities.User;
+import com.bookstore.api.entities.dto.request.UserDtoRequest;
+import com.bookstore.api.entities.dto.response.UserDto;
 import com.bookstore.api.repositories.UserRepository;
 import com.bookstore.api.services.Abstract.ApplicationUserDao;
 import com.bookstore.api.services.Abstract.UserService;
@@ -35,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postOneUser(@RequestBody User user) {
-        var response = userService.postOneUser(user);
+    public ResponseEntity<?> postOneUser(@RequestBody UserDtoRequest userDtoRequest) {
+        var response = userService.postOneUser(userDtoRequest);
         return ResponseEntity
                 .status(response.getHttpStatus())
                 .body(response);

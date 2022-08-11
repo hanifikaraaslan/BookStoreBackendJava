@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.api.entities.dto.BookDtoForPost;
-import com.bookstore.api.entities.dto.BookDtoForPut;
+import com.bookstore.api.entities.dto.request.BookDtoForPost;
+import com.bookstore.api.entities.dto.request.BookDtoForPut;
 import com.bookstore.api.services.Abstract.BookService;
 
 import lombok.RequiredArgsConstructor;

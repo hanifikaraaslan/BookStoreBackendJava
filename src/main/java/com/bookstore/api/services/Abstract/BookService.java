@@ -1,8 +1,8 @@
 package com.bookstore.api.services.Abstract;
 
 import com.bookstore.api.entities.Book;
-import com.bookstore.api.entities.dto.BookDtoForPost;
-import com.bookstore.api.entities.dto.BookDtoForPut;
+import com.bookstore.api.entities.dto.request.BookDtoForPost;
+import com.bookstore.api.entities.dto.request.BookDtoForPut;
 import com.bookstore.api.entities.models.ApiResponse;
 
 import java.util.List;

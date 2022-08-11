@@ -1,4 +1,4 @@
-package com.bookstore.api.entities.dto;
+package com.bookstore.api.entities.dto.response;
 
 import lombok.Data;
 

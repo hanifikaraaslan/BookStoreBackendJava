@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 
 import com.bookstore.api.entities.Role;
 import com.bookstore.api.entities.User;
-import com.bookstore.api.entities.dto.UserDto;
+import com.bookstore.api.entities.dto.request.UserDtoRequest;
+import com.bookstore.api.entities.dto.response.UserDto;
 import com.bookstore.api.entities.models.ApiResponse;
 import com.bookstore.api.exceptions.notFoundExceptions.UserNotFoundException;
 import com.bookstore.api.repositories.RoleRepository;
@@ -43,11 +44,10 @@ public class UserServiceImp implements UserService {
 
         // Role
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
-        Set<Role> roles = new HashSet<>(); // ADMIN / EDITOR / USER
-        roles = user.getRoles();
+        Role role = user.getRole(); // ADMIN / EDITOR / USER 
         // Bu uygulamada biz sadece 1 kayıt tutuyoruz. Ancak altyapı birden fazla role
         // tanımı yapmaya uygun!
-        for (Role role : roles) {
+       // for (Role role : roles) {
             switch (role.getName()) { // role.getName()
                 case "USER": // USER
                     grantedAuthorities.addAll(USER.getGrantedAuthorities());
@@ -61,7 +61,7 @@ public class UserServiceImp implements UserService {
                 default:
                     break;
             }
-        }
+      //  }
 
         // ADMIN
         Optional<ApplicationUser> applicationUser = Optional
@@ -96,17 +96,17 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ApiResponse<UserDto> postOneUser(User user) {
-        Set<Role> roles = new HashSet<>();
-        Role role = roleRepository.findByName("USER");
+    public ApiResponse<UserDto> postOneUser(UserDtoRequest userDtoRequest) {
+      //  Set<Role> roles = new HashSet<>();
+        Role role = roleRepository.getById(userDtoRequest.getRoleId());
         if (role == null) {
             throw new RuntimeException("USER role is not defined.");
         }
-        roles.add(role);
-        user.setRoles(roles);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return ApiResponse.default_CREATED(mapper.map(user, UserDto.class));
+        User userEntity = mapper.map(userDtoRequest, User.class);
+        userEntity.setRole(role);
+        userEntity.setPassword(passwordEncoder.encode(userDtoRequest.getPassword()));
+        userRepository.save(userEntity);
+        return ApiResponse.default_CREATED(mapper.map(userDtoRequest, UserDto.class));
     }
 
     @Override
@@ -123,8 +123,8 @@ public class UserServiceImp implements UserService {
         userEntity.setLastName(user.getLastName());
 
         // Update roles
-        Set<Role> roles = roleRepository.findByIdIn(userDto.getRoles());
-        userEntity.setRoles(roles);
+    //    Set<Role> roles = roleRepository.findByIdIn(userDto.getRoles());
+     //   userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
 
@@ -150,7 +150,7 @@ public class UserServiceImp implements UserService {
         Set<Role> roles = new HashSet<>();
         Role role = roleRepository.findByName("USER");
         roles.add(role);
-        user.setRoles(roles);
+    //    user.setRoles(roles);
 
         return userRepository.save(user);
     }
