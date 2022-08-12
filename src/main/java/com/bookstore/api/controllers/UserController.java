@@ -29,6 +29,7 @@ public class UserController {
     private final UserService userService; // UserServiceImp
 
     @GetMapping
+    @PreAuthorize("hasAuthority('user:get')")
     public ResponseEntity<?> getAllUsers() {
         var response = userService.getAllUsers();
         return ResponseEntity

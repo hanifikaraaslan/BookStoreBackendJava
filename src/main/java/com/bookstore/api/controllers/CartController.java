@@ -2,6 +2,7 @@ package com.bookstore.api.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class CartController {
 	
 	
 	@PostMapping
+	@PreAuthorize("permitAll()")
 	public ResponseEntity<?> postBook(CartPostDto cartPostDto){
 		var response = cartService.postBook(cartPostDto);
 		return ResponseEntity.status(HttpStatus.OK)

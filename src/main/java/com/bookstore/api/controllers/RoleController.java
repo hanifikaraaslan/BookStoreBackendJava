@@ -1,6 +1,7 @@
 package com.bookstore.api.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('role:get')")
     public ResponseEntity<?> getAllRoles() {
         var response = roleService.getAllRoles();
         return ResponseEntity
@@ -27,6 +29,7 @@ public class RoleController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('role:post')")
     public ResponseEntity<?> postOneRole(@RequestBody Role role) {
         var response = roleService.postOneRole(role);
         return ResponseEntity

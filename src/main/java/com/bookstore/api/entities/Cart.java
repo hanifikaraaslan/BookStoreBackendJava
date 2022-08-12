@@ -42,7 +42,8 @@ public class Cart {
 	private Set<Book> books;
 	
 	
-	@OneToMany(mappedBy = "cart")
+	@OneToMany
+	@JoinColumn(name = "user_id")
 	private List<User> users;
 
 
