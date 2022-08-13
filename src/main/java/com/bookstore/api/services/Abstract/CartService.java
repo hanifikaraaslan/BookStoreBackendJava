@@ -8,4 +8,6 @@ public interface CartService {
   
 	ApiResponse<Cart> postBook(CartPostDto cartPostDto);
 	
+	void createCart(Cart cart);
+	
 }

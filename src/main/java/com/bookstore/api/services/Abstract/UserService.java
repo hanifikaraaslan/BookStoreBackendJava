@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bookstore.api.entities.User;
 import com.bookstore.api.entities.dto.request.UserDtoRequest;
+import com.bookstore.api.entities.dto.request.UserRequestForRegister;
 import com.bookstore.api.entities.dto.response.UserDto;
 import com.bookstore.api.entities.models.ApiResponse;
 
@@ -13,7 +14,7 @@ public interface UserService extends ApplicationUserDao {
 
     ApiResponse<UserDto> getOneUser(int id);
 
-    ApiResponse<UserDto> postOneUser(UserDtoRequest userDtoRequest);
+    ApiResponse<UserDto> postOneUser(UserRequestForRegister userDtoRequest);
 
     ApiResponse<UserDto> putOneUser(int id, UserDtoRequest userDtoRequest);
 

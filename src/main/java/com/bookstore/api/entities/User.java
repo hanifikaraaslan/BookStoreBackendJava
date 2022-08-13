@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -28,7 +29,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "user_id")
     int id;
 
     @Column(name = "user_name")
@@ -51,8 +52,10 @@ public class User {
     @JoinColumn(name ="role_id")
     private Role role;
     
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     private Cart cart;
+    
+ 
     
 }

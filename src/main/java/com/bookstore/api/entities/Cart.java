@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,9 +43,9 @@ public class Cart {
 	private Set<Book> books;
 	
 	
-	@OneToMany
-	@JoinColumn(name = "user_id")
-	private List<User> users;
+	@OneToOne(mappedBy = "cart")
+	@NotNull
+	private User user;
 
 
 

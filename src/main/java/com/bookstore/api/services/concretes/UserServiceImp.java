@@ -12,15 +12,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.bookstore.api.entities.Cart;
 import com.bookstore.api.entities.Role;
 import com.bookstore.api.entities.User;
 import com.bookstore.api.entities.dto.request.UserDtoRequest;
+import com.bookstore.api.entities.dto.request.UserRequestForRegister;
 import com.bookstore.api.entities.dto.response.UserDto;
 import com.bookstore.api.entities.models.ApiResponse;
 import com.bookstore.api.exceptions.notFoundExceptions.UserNotFoundException;
+import com.bookstore.api.repositories.CartRepository;
 import com.bookstore.api.repositories.RoleRepository;
 import com.bookstore.api.repositories.UserRepository;
 import com.bookstore.api.security.ApplicationUser;
+import com.bookstore.api.services.Abstract.CartService;
 import com.bookstore.api.services.Abstract.UserService;
 import static com.bookstore.api.security.ApplicationUserRole.*;
 
@@ -35,6 +39,8 @@ public class UserServiceImp implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
+    private CartRepository cartRepository;
+    
 
     @Override
     public Optional<ApplicationUser> selectApplicationUserByUsername(String username) {
@@ -96,17 +102,21 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ApiResponse<UserDto> postOneUser(UserDtoRequest userDtoRequest) {
+    public ApiResponse<UserDto> postOneUser(UserRequestForRegister userDtoRequest) {
       //  Set<Role> roles = new HashSet<>();
         Role role = roleRepository.getById(userDtoRequest.getRoleId());
         if (role == null) {
             throw new RuntimeException("USER role is not defined.");
         }
+        
         User userEntity = mapper.map(userDtoRequest, User.class);
-        userEntity.setRole(role);
+     
+        userEntity.setRole(roleRepository.getById(userDtoRequest.getRoleId()));
         userEntity.setPassword(passwordEncoder.encode(userDtoRequest.getPassword()));
-        userRepository.save(userEntity);
-        return ApiResponse.default_CREATED(mapper.map(userDtoRequest, UserDto.class));
+       userEntity.setCart(new Cart());
+       //cartRepository.save(cart);
+       userRepository.save(userEntity);
+        return ApiResponse.default_CREATED(mapper.map(userEntity, UserDto.class));
     }
 
     @Override

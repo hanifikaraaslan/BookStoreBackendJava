@@ -31,6 +31,7 @@ public class AuthorController {
     }
 
     @GetMapping
+   // @PreAuthorize("hasAuthority('author:get')")
     public ResponseEntity<?> getAllAuthor() {
         var apiResponse = authorService.getAllAuthors();
         return new ResponseEntity<>(apiResponse, apiResponse.getHttpStatus());

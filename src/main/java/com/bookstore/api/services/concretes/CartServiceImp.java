@@ -43,4 +43,13 @@ public class CartServiceImp implements CartService {
 		return ApiResponse.default_OK(cart);
 	}
 
+
+
+	@Override
+	public void createCart(Cart cart) {
+		cartRepository.save(cart);
+	}
+	
+	
+
 }
